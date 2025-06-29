@@ -140,7 +140,13 @@ const formData = ref({
 const formRules = reactive({
   name: [{ required: true, message: '名称不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '开启状态不能为空', trigger: 'blur' }],
-  sort: [{ required: true, message: '排序不能为空', trigger: 'blur' }]
+  sort: [{ required: true, message: '排序不能为空', trigger: 'blur' }],
+  contact: [{ required: true, message: '联系人不能为空', trigger: 'blur' }],
+  mobile: [{ required: true, message: '手机号码不能为空', trigger: 'blur' }],
+  taxNo:  [{ required: true, message: '纳税人识别号不能为空', trigger: 'blur' }],
+  bankName: [{ required: true, message: '开户行不能为空', trigger: 'blur' }],
+  bankAccount: [{ required: true, message: '开户账号不能为空', trigger: 'blur' }],
+  bankAddress: [{ required: true, message: '开户地址不能为空', trigger: 'blur' }],
 })
 const formRef = ref() // 表单 Ref
 
