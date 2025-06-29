@@ -27,8 +27,19 @@
           </el-radio>
         </el-radio-group>
       </el-form-item>
+      <el-form-item label="是否默认" prop="defaultStatus">
+        <el-switch
+          v-model="formData.defaultStatus"
+          @change="() => !formData.defaultStatus"
+        />
+      </el-form-item>
       <el-form-item label="排序" prop="sort">
-        <el-input v-model="formData.sort" placeholder="请输入排序" />
+        <el-input-number
+          v-model="formData.sort"
+          placeholder="请输入排序"
+          class="!w-1/1"
+          :precision="0"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -40,6 +51,7 @@
 <script setup lang="ts">
 import { getIntDictOptions, DICT_TYPE } from '@/utils/dict'
 import { AccountApi, AccountVO } from '@/api/erp/finance/account'
+import { PurchaseInVO } from '@/api/erp/purchase/in'
 
 /** ERP 结算 表单 */
 defineOptions({ name: 'AccountForm' })
@@ -62,6 +74,7 @@ const formData = ref({
 })
 const formRules = reactive({
   name: [{ required: true, message: '名称不能为空', trigger: 'blur' }],
+  no: [{ required: true, message: '账户编码不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '开启状态不能为空', trigger: 'blur' }],
   sort: [{ required: true, message: '排序不能为空', trigger: 'blur' }]
 })
@@ -117,7 +130,8 @@ const resetForm = () => {
     no: undefined,
     remark: undefined,
     status: undefined,
-    sort: undefined
+    sort: undefined,
+    defaultStatus: undefined
   }
   formRef.value?.resetFields()
 }
